@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A MODEL OR 603 EXEMPLARS: TOWARDS MEMORYEFFICIENT CLASS-INCREMENTAL LEARNING</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <article class="blog-post">
+        <h1>A MODEL OR 603 EXEMPLARS: TOWARDS MEMORYEFFICIENT CLASS-INCREMENTAL LEARNING</h1>
+
+        <h2>Problem Statement:</h2>
+        <ul>
+            <li>Current network expanding models do not mention their storage problem, they do not make a fair comparison with memory methods. This assumption is wrong because storing a model can also be costly. Evaluating the memory and architecture methods under the same consumption conditions may actually yield the same performance.</li>
+            <li>They measure that if they exchange model buffer of ResNet32 into exemplars of equal size and append them to ICARL the average accuracy drastically increase from 62 to 70%.</li>
+            <li>Resnet32 model (464k parameter size) == 603 images of CIFAR.</li>
+        </ul>
+
+        <h2>Research Goals:</h2>
+        <ul>
+            <li>They make a fair comparison between memory based methods and architecture based methods.</li>
+            <li>They propose to changing the assumption of “training a backbone for each task”. Instead they aim to separate general layers from task specific layers and the remaining budget should be spent for keeping the memory.</li>
+        </ul>
+
+        <h2>Proposed Approach:</h2>
+        <ul>
+            <li>They analyze the effect of different layers in the backbone and find that sharing the shallow layers and only creating deep layers for new tasks helps save the memory budget in CIL. Furthermore, the spared space can be exchanged for an equal number of exemplars to further boost the performance.</li>
+            <li>They decompose the model into the embedding module and linear layers. They investigate the models into 3 aspects: Block-wise gradient, shift and similarity of layers. They found that shallow layers tend to stay unchanged during CIL. Hence, they summarize that instead of expanding general layers they say that we should expand specialized layers.</li>
+            <li>To this end, they expand the specialized layers (e.g last block of Resnet) for each task and optimize the function of:</li>
+        </ul>
+        <img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8bbf172e-27d4-4738-890a-0c923fa44478/Untitled.png" alt="Equation">
+
+        <h2>Experimental Setup:</h2>
+        <ul>
+            <li>Dataset: CIFAR100, ImageNet100</li>
+            <li>Hyperparameters: There is a lambda hyperparameter that still controls the KD</li>
+            <li>Training setup: CIL</li>
+        </ul>
+
+        <h2>Evaluation metrics:</h2>
+        <ul>
+            <li>Incremental ACC, AUC</li>
+        </ul>
+
+        <h2>Results:</h2>
+        <img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9cbf3a29-4581-430f-9d0e-f4338351ad35/Untitled.png" alt="Results">
+
+        <p>While optimizing the equation they use old backbone as can be seen from the equation as well. In the Figure 1 they find that if they kept the specialized layers of old network fixed and the general layers free, they find better performance. (fi (s) old is kept fixed).</p>
+
+        <img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/952e8154-8109-42aa-aef5-c6beb69a4e83/Untitled.png" alt="Results 2">
+
+        <h2>Limitations:</h2>
+        <p>Apart from the methods discussed in this paper, there are other methods that do not save exemplars or models. They only concentrate on the methods with extra memory and select several typical methods for evaluation.</p>
+
+        <h2>Strengths:</h2>
+        <p>Very well written and fun to read.</p>
+        <p>Interesting point of research, in the future machines should be able to adjust themselves whether to expand the network.</p>
+
+        <h2>Future work:</h2>
+        <ul>
+            <li>Using the simply last block idea may be investigated further?</li>
+        </ul>
+    </article>
+</body>
+</html>
