@@ -71,6 +71,20 @@ main {
     margin-left: 15%; /* Adjust based on the width of the sidebar */
     padding: 2% 15% 2% 15%; /* Optional: Add padding to the main content for better readability */
 }
+.blog-subsections {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.blog-subsections h3 {
+    cursor: pointer;
+}
+
+.blog-post {
+    flex: 0 0 30%; /* Adjust the width of each blog post section */
+    margin-right: 5%; /* Add some space between sections */
+}
+
 /* Style for the expanded papers section */
 #papers-section.expanded .blog-post {
     display: block;
@@ -79,9 +93,4 @@ main {
 /* Initially hide the blog posts inside the papers section */
 #papers-section .blog-post {
     display: none;
-}
-
-/* Style for the clickable "Papers" header */
-#papers-section h3 {
-    cursor: pointer;
 }
