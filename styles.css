@@ -71,3 +71,17 @@ main {
     margin-left: 15%; /* Adjust based on the width of the sidebar */
     padding: 2% 15% 2% 15%; /* Optional: Add padding to the main content for better readability */
 }
+/* Style for the expanded papers section */
+#papers-section.expanded .blog-post {
+    display: block;
+}
+
+/* Initially hide the blog posts inside the papers section */
+#papers-section .blog-post {
+    display: none;
+}
+
+/* Style for the clickable "Papers" header */
+#papers-section h3 {
+    cursor: pointer;
+}
