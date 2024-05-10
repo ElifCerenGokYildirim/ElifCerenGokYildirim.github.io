@@ -9,7 +9,7 @@ body {
 
 .container {
     display: flex;
-    justify-content: center; /* Center the content horizontally */
+    justify-content: flex-end; /* Align content to the right */
 }
 
 /* Styles for the sidebar */
@@ -27,9 +27,9 @@ aside {
 
 aside img {
     border-radius: 50%;
-    width: 150px; /* Set a fixed width for the profile picture */
-    height: auto;
-    margin-bottom: 20px; /* Increase margin bottom */
+    width: 80px; /* Decrease width of the profile picture */
+    height: 80px; /* Decrease height of the profile picture */
+    margin-bottom: 10px; /* Maintain space below the profile picture */
 }
 
 .social-links {
@@ -54,7 +54,7 @@ aside img {
 main {
     width: 60%; /* Set main content width */
     padding: 20px;
-    margin-left: 280px; /* Adjust margin to accommodate sidebar width */
+    margin-right: 280px; /* Adjust margin to accommodate sidebar width */
 }
 
 /* Header styles */
@@ -123,6 +123,8 @@ section h2 {
 .more-posts-link a:hover {
     background-color: #0097a7; /* Change background color on hover */
 }
+
+/* Memo image styles */
 .memo-image {
     max-width: 100%; /* Ensure the image fits within its container */
     height: auto; /* Maintain aspect ratio */
