@@ -73,16 +73,16 @@ main {
 }
 .blog-subsections {
     display: flex;
-    flex-wrap: wrap;
 }
 
 .blog-subsections h3 {
     cursor: pointer;
+    margin-right: 20px; /* Add space between section headings */
 }
 
 .blog-post {
-    flex: 0 0 30%; /* Adjust the width of each blog post section */
-    margin-right: 5%; /* Add some space between sections */
+    flex: 1; /* Each blog post section takes equal width */
+    margin-right: 20px; /* Add space between blog post sections */
 }
 
 /* Style for the expanded papers section */
