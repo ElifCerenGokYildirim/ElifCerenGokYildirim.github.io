@@ -86,3 +86,7 @@ main {
 .more-posts-link {
     /* Your styles for the "For More..." link */
 }
+.memo-image {
+    max-width: 20%; /* Set maximum width to the container width */
+    height: auto; /* Maintain aspect ratio */
+}
