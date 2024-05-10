@@ -1,16 +1,20 @@
+/* General styles */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    color: #333; /* Set default text color */
 }
 
 .container {
     display: flex;
+    justify-content: center; /* Center the content horizontally */
 }
 
+/* Styles for the sidebar */
 aside {
-    width: 15%;
+    width: 250px; /* Fixed width for the sidebar */
     position: fixed;
     height: 100%;
     background-color: #333;
@@ -18,75 +22,111 @@ aside {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    overflow-y: auto; /* Enable scrolling for sidebar content */
 }
 
 aside img {
     border-radius: 50%;
-    max-width: 85%;
+    width: 150px; /* Set a fixed width for the profile picture */
     height: auto;
-    margin-bottom: 15px;
-}
-
-aside h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-aside p.description {
-    font-style: italic;
-    margin-top: 0;
-    margin-bottom: 30px;
+    margin-bottom: 20px; /* Increase margin bottom */
 }
 
 .social-links {
-    list-style: none;
-    padding: 0;
+    margin-top: 20px; /* Add space above social links */
 }
 
 .social-links li {
-    margin-bottom: 10px;
+    margin-bottom: 15px; /* Adjust margin between social links */
 }
 
 .social-links a {
     color: #fff;
     text-decoration: none;
+    transition: color 0.3s; /* Smooth transition for link color */
 }
 
-.body-links a {
-    color: blue;
-    text-decoration: none;
+.social-links a:hover {
+    color: #00bcd4; /* Change link color on hover */
 }
 
-ol {
-  list-style-type: none; /* Remove the default numbering for ordered lists */
-  margin: 0;
-  padding: 0;
-}
-
-li {
-    margin-bottom: 10px; /* Add margin between list items */
-  }
-
+/* Main content styles */
 main {
-    margin-left: 15%; /* Adjust based on the width of the sidebar */
-    padding: 2% 15% 2% 15%; /* Optional: Add padding to the main content for better readability */
-}
-.blog-section {
-    /* Your styles for the "Papers" section */
+    width: 60%; /* Set main content width */
+    padding: 20px;
+    margin-left: 280px; /* Adjust margin to accommodate sidebar width */
 }
 
-.blog-posts-container {
-    /* Your styles for the container of blog posts */
+/* Header styles */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 30px 0;
+    text-align: center;
+    margin-bottom: 40px; /* Increase margin bottom */
 }
 
+header h1 {
+    margin: 0;
+    font-size: 2.5rem; /* Increase header font size */
+}
+
+/* Section styles */
+section {
+    background-color: #fff;
+    padding: 30px;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 20px; /* Increase margin bottom */
+    font-size: 1.8rem; /* Increase section heading font size */
+}
+
+/* Blog post styles */
 .blog-post {
-    /* Your styles for individual blog posts */
+    margin-bottom: 30px;
 }
 
+.blog-post h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5rem; /* Increase blog post title font size */
+}
+
+.blog-post img {
+    max-width: 100%; /* Ensure images fit within their container */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow to images */
+}
+
+/* More posts link styles */
 .more-posts-link {
-    /* Your styles for the "For More..." link */
+    text-align: center; /* Center the "For More..." link */
+}
+
+.more-posts-link a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #00bcd4;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.more-posts-link a:hover {
+    background-color: #0097a7; /* Change background color on hover */
 }
 .memo-image {
-    max-width: 20%; /* Set maximum width to the container width */
+    max-width: 100%; /* Ensure the image fits within its container */
     height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Add rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow */
+    margin-bottom: 15px; /* Add some space below the image */
 }
