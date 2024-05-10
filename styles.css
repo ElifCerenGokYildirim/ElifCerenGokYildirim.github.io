@@ -80,7 +80,7 @@ main {
     display: none;
 }
 
-/* Show blog posts container when corresponding checkbox is checked */
-#papers-toggle:checked ~ #papers-posts {
+/* Show blog posts container when corresponding anchor is targeted */
+#papers-posts:target {
     display: block;
 }
