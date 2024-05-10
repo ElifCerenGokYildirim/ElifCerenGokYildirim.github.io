@@ -71,26 +71,16 @@ main {
     margin-left: 15%; /* Adjust based on the width of the sidebar */
     padding: 2% 15% 2% 15%; /* Optional: Add padding to the main content for better readability */
 }
-.blog-subsections {
-    display: flex;
+.blog-section {
+    margin-bottom: 20px; /* Add space between blog sections */
 }
 
-.blog-subsections h3 {
-    cursor: pointer;
-    margin-right: 20px; /* Add space between section headings */
-}
-
-.blog-post {
-    flex: 1; /* Each blog post section takes equal width */
-    margin-right: 20px; /* Add space between blog post sections */
-}
-
-/* Style for the expanded papers section */
-#papers-section.expanded .blog-post {
-    display: block;
-}
-
-/* Initially hide the blog posts inside the papers section */
-#papers-section .blog-post {
+/* Initially hide blog posts containers */
+.blog-posts-container {
     display: none;
+}
+
+/* Show blog posts container when corresponding checkbox is checked */
+#papers-toggle:checked ~ #papers-posts {
+    display: block;
 }
