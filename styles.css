@@ -72,15 +72,17 @@ main {
     padding: 2% 15% 2% 15%; /* Optional: Add padding to the main content for better readability */
 }
 .blog-section {
-    margin-bottom: 20px; /* Add space between blog sections */
+    /* Your styles for the "Papers" section */
 }
 
-/* Initially hide blog posts containers */
 .blog-posts-container {
-    display: none;
+    /* Your styles for the container of blog posts */
 }
 
-/* Show blog posts container when corresponding anchor is targeted */
-#papers-posts:target {
-    display: block;
+.blog-post {
+    /* Your styles for individual blog posts */
+}
+
+.more-posts-link {
+    /* Your styles for the "For More..." link */
 }
