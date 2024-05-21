@@ -9,59 +9,22 @@ body {
 
 .container {
     display: flex;
-    justify-content: flex-end; /* Align content to the right */
-}
-
-/* Styles for the sidebar */
-aside {
-    width: 250px; /* Fixed width for the sidebar */
-    position: fixed;
-    height: 100%;
-    background-color: #333;
-    color: #fff;
+    justify-content: center; /* Center content horizontally */
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    overflow-y: auto; /* Enable scrolling for sidebar content */
 }
 
-aside img {
-    border-radius: 50%;
-    width: 80px; /* Decrease width of the profile picture */
-    height: 80px; /* Decrease height of the profile picture */
-    margin-bottom: 10px; /* Maintain space below the profile picture */
-}
-
-.social-links {
-    margin-top: 20px; /* Add space above social links */
-}
-
-.social-links li {
-    margin-bottom: 15px; /* Adjust margin between social links */
-}
-
-.social-links a {
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s; /* Smooth transition for link color */
-}
-
-.social-links a:hover {
-    color: #00bcd4; /* Change link color on hover */
-}
-
-/* Main content styles */
 main {
-    width: 60%; /* Set main content width */
+    width: 80%; /* Adjust width as needed */
+    background-color: #fff;
     padding: 20px;
-    margin-right: 280px; /* Adjust margin to accommodate sidebar width */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Header styles */
 header {
     background-color: #333;
     color: #fff;
-    padding: 30px 0;
+    padding: 30px 20px;
     text-align: center;
     margin-bottom: 40px; /* Increase margin bottom */
 }
@@ -69,6 +32,49 @@ header {
 header h1 {
     margin: 0;
     font-size: 2.5rem; /* Increase header font size */
+}
+
+/* Profile container styles */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center contents horizontally */
+}
+
+.profile-container img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px; /* Space between image and text */
+}
+
+.profile-container .description {
+    margin: 0;
+    margin-bottom: 20px; /* Space between description and social links */
+}
+
+.profile-container .social-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 15px; /* Space between social links */
+}
+
+.profile-container .social-links li {
+    display: inline;
+}
+
+.profile-container .social-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem; /* Adjust font size for social links */
+    transition: color 0.3s; /* Smooth transition for link color */
+}
+
+.profile-container .social-links a:hover {
+    color: #00bcd4; /* Change link color on hover */
 }
 
 /* Section styles */
