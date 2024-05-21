@@ -67,11 +67,11 @@ body {
 
 .social-links img {
     width: 27px; /* Smaller size for social media icons */
-    height: 24px;
+    height: 26px;
 }
 
 .profile-info a {
-    color: #fff;
+    color: #999999;
     text-decoration: none;
     font-size: 1.2rem;
     transition: color 0.3s;
