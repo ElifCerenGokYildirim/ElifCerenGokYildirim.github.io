@@ -1,141 +1,133 @@
-/* General styles */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333; /* Set default text color */
-}
-
+/* Container styles */
 .container {
-    display: flex;
-    justify-content: center; /* Center content horizontally */
-    padding: 20px;
-}
-
-main {
-    width: 80%; /* Adjust width as needed */
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-/* Header styles */
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 30px 20px;
-    text-align: center;
-    margin-bottom: 40px; /* Increase margin bottom */
-}
-
-header h1 {
-    margin: 0;
-    font-size: 2.5rem; /* Increase header font size */
+    width: 80%;
+    margin: 0 auto;
 }
 
 /* Profile container styles */
-.profile-container img {
+.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+}
+
+.profile-info img {
     border-radius: 50%;
-    max-width: 100%; /* Set maximum width to 100% */
-    height: auto; /* Automatically adjust height to maintain aspect ratio */
-    margin-bottom: 20px; /* Space between image and text */
+    max-width: 100px; /* Adjust the maximum width of the image */
+    height: auto;
+    margin-right: 20px; /* Adjust margin as needed */
 }
 
-
-.profile-container img {
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    margin-bottom: 20px; /* Space between image and text */
+.profile-info div {
+    display: flex;
+    flex-direction: column;
 }
 
-.profile-container .description {
-    margin: 0;
-    margin-bottom: 20px; /* Space between description and social links */
+.description {
+    font-size: 1.2em;
+    color: #555;
 }
 
-.profile-container .social-links {
+/* Social links styles */
+.social-links {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 15px; /* Space between social links */
+    gap: 15px;
 }
 
-.profile-container .social-links li {
+.social-links li {
     display: inline;
 }
 
-.profile-container .social-links a {
+.social-links a {
     color: #fff;
     text-decoration: none;
-    font-size: 1.2rem; /* Adjust font size for social links */
-    transition: color 0.3s; /* Smooth transition for link color */
+    font-size: 1.2rem;
+    transition: color 0.3s;
 }
 
-.profile-container .social-links a:hover {
-    color: #00bcd4; /* Change link color on hover */
+.social-links a:hover {
+    color: #00bcd4;
+}
+
+/* Body links styles */
+.body-links {
+    margin-top: 20px;
+    font-size: 1em;
+    color: #333;
+}
+
+.body-links a {
+    color: #00bcd4;
+    text-decoration: none;
+}
+
+.body-links a:hover {
+    text-decoration: underline;
 }
 
 /* Section styles */
 section {
-    background-color: #fff;
-    padding: 30px;
     margin-bottom: 40px;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 section h2 {
-    color: #333;
-    margin-top: 0;
-    margin-bottom: 20px; /* Increase margin bottom */
-    font-size: 1.8rem; /* Increase section heading font size */
+    font-size: 2em;
+    margin-bottom: 20px;
 }
 
-/* Blog post styles */
+.blog-subsections {
+    display: flex;
+    justify-content: space-between;
+}
+
+.blog-section {
+    width: 48%;
+}
+
+.blog-posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .blog-post {
-    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
 }
 
 .blog-post h4 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1.5rem; /* Increase blog post title font size */
+    margin: 0 0 10px;
 }
 
-.blog-post img {
-    max-width: 100%; /* Ensure images fit within their container */
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow to images */
+.blog-post a {
+    text-decoration: none;
+    color: #00bcd4;
 }
 
-/* More posts link styles */
+.blog-post a:hover {
+    text-decoration: underline;
+}
+
 .more-posts-link {
-    text-align: center; /* Center the "For More..." link */
+    text-align: right;
+    margin-top: 10px;
 }
 
 .more-posts-link a {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #00bcd4;
-    color: #fff;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s; /* Smooth transition for background color */
+    color: #00bcd4;
 }
 
 .more-posts-link a:hover {
-    background-color: #0097a7; /* Change background color on hover */
-}
-
-/* Memo image styles */
-.memo-image {
-    max-width: 100%; /* Ensure the image fits within its container */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 8px; /* Add rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow */
-    margin-bottom: 15px; /* Add some space below the image */
+    text-decoration: underline;
 }
