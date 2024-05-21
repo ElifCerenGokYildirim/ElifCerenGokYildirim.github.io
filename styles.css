@@ -35,12 +35,13 @@ header h1 {
 }
 
 /* Profile container styles */
-.profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Center contents horizontally */
+.profile-container img {
+    border-radius: 50%;
+    max-width: 100%; /* Set maximum width to 100% */
+    height: auto; /* Automatically adjust height to maintain aspect ratio */
+    margin-bottom: 20px; /* Space between image and text */
 }
+
 
 .profile-container img {
     border-radius: 50%;
