@@ -19,7 +19,7 @@ body {
 /* Header styles */
 .header-section {
     background-color: #fdefef;
-    color: #444444;
+    color: #333;
     padding: 30px;
 }
 
@@ -63,6 +63,11 @@ body {
     text-decoration: none;
     font-size: 1.2rem;
     transition: color 0.3s;
+}
+
+.social-links img {
+    width: 24px; /* Smaller size for social media icons */
+    height: 24px;
 }
 
 .profile-info a {
