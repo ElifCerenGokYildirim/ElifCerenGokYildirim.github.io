@@ -18,7 +18,7 @@ body {
 
 /* Header styles */
 .header-section {
-    background-color: #ffefd5;
+    background-color: #fdefef;
     color: #fff;
     padding: 30px;
 }
@@ -30,7 +30,7 @@ body {
 
 .profile-container img {
     border-radius: 50%;
-    max-width: 130px; /* Adjust the maximum width of the image */
+    max-width: 140px; /* Adjust the maximum width of the image */
     height: auto;
     margin-right: 20px; /* Adjust margin as needed */
 }
