@@ -116,7 +116,7 @@ body {
     text-decoration: underline;
 }
 
-.blog-posts-container {
+.blog-post-container {
     display: flex;
     justify-content: space-between; /* Ensure even spacing */
     overflow-x: auto; /* Enable horizontal scrolling if necessary */
