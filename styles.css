@@ -51,11 +51,11 @@ body {
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 5px;
 }
 
 .social-links li {
     display: inline;
+    margin-right: 5px; /* Adjust the margin between social media icons */
 }
 
 .social-links a {
@@ -66,8 +66,8 @@ body {
 }
 
 .social-links img {
-    width: 28px; /* Smaller size for social media icons */
-    height: 26px;
+    width: 55px; /* Smaller size for social media icons */
+    height: 25px;
 }
 
 .profile-info a {
@@ -113,5 +113,75 @@ body {
 }
 
 .body-links a:hover {
+    text-decoration: underline;
+}
+
+.blog-posts-container {
+    display: flex;
+    justify-content: space-between; /* Ensure even spacing */
+    overflow-x: auto; /* Enable horizontal scrolling if necessary */
+}
+
+.blog-post {
+    flex: 0 0 calc(30% - 20px); /* Adjusted width for three posts per row */
+    max-width: calc(30% - 20px); /* Added to ensure responsiveness */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.blog-post img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.blog-post h4 {
+    margin-bottom: 10px; /* Add space between the title and the content */
+    font-size: 1.2rem; /* Adjust the font size */
+    color: #333; /* Set the color of the title */
+}
+
+.blog-post h4 a {
+    text-decoration: none; /* Remove underline from links */
+    color: #333; /* Set the color of the link */
+}
+
+.blog-post h4 a:hover {
+    color: #00bcd4; /* Change color on hover */
+}
+
+.blog-post:nth-child(1) img {
+    margin-bottom: 10px; /* Adjust the margin bottom as needed */
+}
+
+.blog-post:nth-child(1) h4 {
+    margin-bottom: 17px; /* Adjust the margin bottom as needed */
+    /* Add any other styles specific to the second blog post's title */
+}
+
+.blog-post:nth-child(2) img {
+    margin-bottom: 5px; /* Adjust the margin bottom as needed */
+}
+
+.blog-post:nth-child(2) h4 {
+    margin-bottom: 2px; /* Adjust the margin bottom as needed */
+    /* Add any other styles specific to the second blog post's title */
+}
+
+.see-more {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.see-more a {
+    color: #00bcd4;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.see-more a:hover {
     text-decoration: underline;
 }

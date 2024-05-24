@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Model or 603 Exemplars: Towards Memory Efficient Class-Incremental Learning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+         h1 {
+            font-size: 30px;
+            margin-top: 0;
+            color: #333;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #f4cccc;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        h1 a {
+            color: inherit; /* Inherit the color of the text */
+            text-decoration: none; /* Remove default underline */
+        }
+
+        h1 a:hover {
+            text-decoration: underline; /* Add underline on hover */
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            color: #555;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #777;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+
+        p {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+
+        }
+        .author-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .author-section h3 {
+            margin-right: 5px; /* Adjust as needed */
+            font-size: 18px; /* Adjust the font size as needed */
+
+        }
+
+        .author-section p {
+            margin: 0;
+            font-size: 12px; /* Adjust the font size as needed */
+        }
+
+        .author-section p:not(:last-child)::after {
+            content: " ";
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><a href="https://arxiv.org/pdf/2205.13218">A MODEL OR 603 EXEMPLARS: TOWARDS MEMORYEFFICIENT CLASS-INCREMENTAL LEARNING</a></h1>
+
+        <div class="author-section">
+            <h3>Authors:</h3>
+            <p><strong>Da-Wei Zhou</strong>,</p>
+            <p><strong>Qi-Wei Wang</strong>,</p>
+            <p><strong>Han-Jia Ye</strong>,</p>
+            <p><strong>De-Chuan Zhan</strong>,</p>
+        </div>
+
+    <div class="container">
+        <article class="blog-post">
+            <h2>Problem Statement:</h2>
+            <ul>
+                <li>Current network expanding models do not mention their storage problem, they do not make a fair comparison with memory methods. This assumption is wrong because storing a model can also be costly. Evaluating the memory and architecture methods under the same consumption conditions may actually yield the same performance.</li>
+                <li>They measure that if they exchange model buffer of ResNet32 into exemplars of equal size and append them to ICARL the average accuracy drastically increase from 62 to 70%.</li>
+                <li>Resnet32 model (464k parameter size) == 603 images of CIFAR.</li>
+            </ul>
+
+            <h2>Research Goals:</h2>
+            <ul>
+                <li>They make a fair comparison between memory based methods and architecture based methods.</li>
+                <li>They propose to changing the assumption of “training a backbone for each task”. Instead they aim to separate general layers from task specific layers and the remaining budget should be spent for keeping the memory.</li>
+            </ul>
+
+            <h2>Proposed Approach:</h2>
+            <p>They analyze the effect of different layers in the backbone and find that sharing the shallow layers and only creating deep layers for new tasks helps save the memory budget in CIL. Furthermore, the spared space can be exchanged for an equal number of exemplars to further boost the performance.</p>
+            <p>They decompose the model into the embedding module and linear layers. They investigate the models into 3 aspects: Block-wise gradient, shift and similarity of layers. They found that shallow layers tend to stay unchanged during CIL. Hence, they summarize that instead of expanding general layers they say that we should expand specialized layers.</p>
+            <p>To this end, they expand the specialized layers (e.g last block of Resnet) for each task and optimize the function of:</p>
+            <img src="/blog/memo/memo_equation.png" alt="Equation">
+
+            <h2>Experimental Setup:</h2>
+            <ul>
+                <li>Dataset: CIFAR100, ImageNet100</li>
+                <li>Hyperparameters: There is a lambda hyperparameter that still controls the KD</li>
+                <li>Training setup: CIL</li>
+            </ul>
+
+            <h2>Evaluation metrics:</h2>
+            <ul>
+                <li>Incremental ACC, AUC</li>
+            </ul>
+
+            <h2>Results:</h2>
+            <img src="/blog/memo/memo_result1.png" alt="Figure 1">
+            <p>While optimizing the equation they use old backbone as can be seen from the equation as well. In the Figure 1 they find that if they kept the specialized layers of old network fixed and the general layers free, they find better performance. (fi (s) old is kept fixed).</p>
+            <p>They achieve compatible results with DER.</p>
+            <img src="/blog/memo/memo_result2.png" alt="Figure 2">
+
+            <h2>Limitations:</h2>
+            <p>Apart from the methods discussed in this paper, there are other methods that do not save exemplars or models. They only concentrate on the methods with extra memory and select several typical methods for evaluation.</p>
+
+            <h2>Strengths:</h2>
+            <p>Very well written and fun to read.</p>
+            <p>Interesting point of research, in the future machines should be able to adjust themselves whether to expand the network.</p>
+
+            <h2>Future work:</h2>
+            <p>Using the simply last block idea may be investigated further?</p>
+        </article>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Difficulty Aware Parameter Allocation & Regularization for Lifelong Learning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-top: 0;
+            color: #333;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #8e7cc3;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        h1 a {
+            color: inherit; /* Inherit the color of the text */
+            text-decoration: none; /* Remove default underline */
+        }
+
+        h1 a:hover {
+            text-decoration: underline; /* Add underline on hover */
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            color: #555;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #777;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+
+        p {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+
+        }
+        .author-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .author-section h3 {
+            margin-right: 5px; /* Adjust as needed */
+            font-size: 18px; /* Adjust the font size as needed */
+
+        }
+
+        .author-section p {
+            margin: 0;
+            font-size: 12px; /* Adjust the font size as needed */
+        }
+
+        .author-section p:not(:last-child)::after {
+            content: " ";
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><a href="https://arxiv.org/pdf/2304.05288">Task Difficulty Aware Parameter Allocation & Regularization for Lifelong Learning</a></h1>
+
+        <div class="author-section">
+            <h3>Authors:</h3>
+            <p>Wenjin Wang,</p>
+            <p>Yunqing Hu,</p>
+            <p>Qianglong Chen,</p>
+            <p>Yin Zhang</p>
+        </div>
+
+        <article class="blog-post">
+            <h2>Problem Statement:</h2>
+            <ul>
+                <li>Parameter regularization methods face significant forgetting.</li>
+                <li>Network expansion methods bring extra costs and overhead even sometimes not necessary.</li>
+            </ul>
+
+            <h2>Research Goals:</h2>
+            <ul>
+                <li>By considering the task similarity, the framework will adaptively decide whether to use the same network (with the same weights) and apply parameter regularization to selected network or build a different network from scratch and learn the new task with the new network.</li>
+                <li>To achieve higher performance results than parameter regularization methods and less computational costs than modular networks.</li>
+            </ul>
+
+            <h2>Proposed Approach:</h2>
+            <ul>
+                <li>Parameter Allocation and Regularization (PAR) is an adaptive method which consists of 2 stages. First stage is measuring the task similarity.</li>
+            </ul>
+
+            <h3>Task Similarity via Task Distance via Nearest-Prototype Distance:</h3>
+            <p>PAR calculates the KL divergence between 2 tasks (distributions). However, it is very hard to calculate the distributions from raw data like image dataset. Instead, a model can be used to calculate the representations of images and in the end distributions of the images.</p>
+
+            <p>We can calculate distribution of images by using a ML model. In this paper they used pre-trained ResNet18 to infer the images and get their distributions for current task and previous tasks. </p>
+
+            <p>They only hold the mean of distributions of each classes in previous tasks. Then when a new task comes they calculated the distance between sample Xi (from new task) and mean distribution of all images in the same task Ti.</p>
+
+            <p>In the last step they calculate the KL divergence between p(l) and q(l) and decide whether new task is similar to any of the previous tasks. They define a threshold value alpha and they compare the result of KL divergence with the alpha value.</p>
+
+            <h3>Parameter Allocation:</h3>
+            <p>They adopt a cell-based NAS to find the best architecture for the new task. They propose a relatedness-aware sampling-based architecture search strategy to improve efficiency.</p>
+
+            <h2>Experimental Setup:</h2>
+            <ul>
+                <li>Dataset: CTrL CIFAR100 and F-CelebA</li>
+                <li>Hyperparameters</li>
+                <li>Training setup</li>
+            </ul>
+
+            <h2>Evaluation metrics:</h2>
+            <ul>
+                <li>Average performance (AP) and Average forgetting (AF).</li>
+            </ul>
+
+            <h2>Results:</h2>
+            <p>It is evaluated on TIL setup and it performs much better than EWC, LwF, MAS, GPM, AGEM, Learn to Grow, Progressive Networks, and Efficient Continual Learning with Modular Networks and Task-Driven Priors.</p>
+
+            <h2>Limitations:</h2>
+            <ul>
+                <li>It needs to build an Expert model if the task is found to very divergent which kind of harms the continual learning policy of having a single model.
+                <li>Measuring the task similarity part can be enhanced with meta learning perhaps. Even without using a model to find distributions for the datasets. (Task2Vec, Data2Vec)</li>
+                <li>We don't know how it will respond for the Class Incremental Learning maybe it can be applied to CIL.
+            <h2>Strengths:</h2>
+            <ol>
+                <li>Considers the task similarity to overcome the extra computation cost and defy the forgetting issue.</li>
+                <li>Does not have memory.</li>
+            </ol>
+
+            <h2>Future work:</h2>
+            <p>This method is flexible, and in the future,it is possible to implement more relatedness estimation, regularization, and allocation strategies into PAR.</p>
+            <p>CIL setup can be future direction.</p>
+        </article>
+    </div>
+</body>
+</html>

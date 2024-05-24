@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divide and Not Forget: Ensemble of Selectively Trained Experts in Continual Learning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-top: 0;
+            color: #333;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #bedad3;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        h1 a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        h1 a:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            color: #555;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #777;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+
+        p {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        .author-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .author-section h3 {
+            margin-right: 5px; /* Adjust as needed */
+            font-size: 18px; /* Adjust the font size as needed */
+
+        }
+
+        .author-section p {
+            margin: 0;
+            font-size: 12px; /* Adjust the font size as needed */
+        }
+
+        .author-section p:not(:last-child)::after {
+            content: " ";
+            margin-right: 5px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+        <h1><a href="https://arxiv.org/pdf/2401.10191">DIVIDE AND NOT FORGET: ENSEMBLE OF SELECTIVELY TRAINED EXPERTS IN CONTINUAL LEARNING</a></h1>
+
+        <div class="author-section">
+            <h3>Authors:</h3>
+            <p><strong>Grzegorz Rypeść</strong>,</p>
+            <p><strong>Sebastian Cygert</strong>,</p>
+            <p><strong>Valeriya Khan</strong>,</p>
+            <p><strong>Tomasz Trzciński</strong>,</p>
+            <p><strong>Bartosz Zielinski</strong> & <strong>Bartłomiej Twardowski</strong></p>
+        </div>
+
+        <article class="blog-post">
+            <h2>Problem Statement:</h2>
+            <ul>
+                <li>Mixture of experts are usually trained all at once using whole task data, which makes them all prone to forgetting and increasing computational burden.</li>
+            </ul>
+
+            <h2>Research Goals:</h2>
+            <ul>
+                <li>To address this limitation, they introduce a novel approach named SEED. SEED selects only one, the most optimal expert for a considered task, and uses data from this task to fine-tune only this expert.</li>
+            </ul>
+
+            <h2>Proposed Approach:</h2>
+            <p>The below image very well describes the proposed method:</p>
+            <img src="/blog/divide_and_not_forget/proposed_approach.png" alt="Proposed Approach">
+
+            <h2>Experimental Setup:</h2>
+            <ul>
+                <li>Dataset: CIFAR100, DomainNet, Imagenetsubset</li>
+                <li>Hyperparameters</li>
+                <li>Training setup: CIL And the below image describes how they make this CIL</li>
+            </ul>
+            <img src="/blog/divide_and_not_forget/experimental_setup.png" alt="CIL">
+
+            <h2>Evaluation metrics:</h2>
+            <ul>
+                <li>Inc Avg Accuracy and Average of Inc Avg Acc.</li>
+            </ul>
+
+            <h2>Results:</h2>
+            <img src="/blog/divide_and_not_forget/result.png" alt="Results">
+
+            <h2>Limitations:</h2>
+            <ul>
+                <li>At some point it will eventually stuck and start to forget.</li>
+                <li>I did not understand %100, if we finetune the expert even though with regularization term, how we do not catastrophically forget the previous tasks that are fine-tuned with that Expert.</li>
+                <li>Also during test time image is a bit strange. Because let's say the orange Expert is trained with cat and chicken so that's why it classifies it as cat. But then I expect the green Expert to be trained with dog and rabbit and will respond to cat image as dog (because it was the last thing it learned) So I am probably missing something but couldn't figure it out yet what is that.</li>
+            </ul>
+
+            <h2>Strengths:</h2>
+            <p>It is very real life case I think.</p>
+
+
+        </article>
+    </div>
+</body>
+</html>
