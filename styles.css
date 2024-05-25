@@ -157,23 +157,6 @@ body {
     color: #00bcd4; /* Change color on hover */
 }
 
-.blog-post:nth-child(1) img {
-    margin-bottom: 10px; /* Adjust the margin bottom as needed */
-}
-
-.blog-post:nth-child(1) h4 {
-    margin-bottom: 17px; /* Adjust the margin bottom as needed */
-    /* Add any other styles specific to the second blog post's title */
-}
-
-.blog-post:nth-child(2) img {
-    margin-bottom: 5px; /* Adjust the margin bottom as needed */
-}
-
-.blog-post:nth-child(2) h4 {
-    margin-bottom: 2px; /* Adjust the margin bottom as needed */
-    /* Add any other styles specific to the second blog post's title */
-}
 
 .see-more {
     text-align: center;
