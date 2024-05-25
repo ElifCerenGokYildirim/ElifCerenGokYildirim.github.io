@@ -124,14 +124,16 @@ body {
 }
 
 .blog-post {
-    flex: 1 1 calc(33.333% - 20px); /* Adjust width for three posts per row */
-    max-width: calc(33.333% - 20px); /* Ensure responsiveness */
-    background-color: #fff;
-    padding: 20px;
-     margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+            flex: 0 0 calc(33% - 20px); /* Adjusted width for three posts per row */
+            max-width: calc(30% - 10px); /* Added to ensure responsiveness */
+            background-color: #fff;
+            padding: 15px;
+            border: 1px solid #a5a3a3;/* Added border property with width, style, and color */
+            border-radius: 10px;
+            text-align: center; /* Centers text within the container */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centers children horizontally */
 }
 
 .blog-post img {
