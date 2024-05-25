@@ -124,8 +124,8 @@ body {
 }
 
 .blog-post {
-    flex: 0 0 calc(30% - 20px); /* Adjusted width for three posts per row */
-    max-width: calc(30% - 20px); /* Added to ensure responsiveness */
+    flex: 1 1 calc(33.333% - 20px); /* Adjust width for three posts per row */
+    max-width: calc(33.333% - 20px); /* Ensure responsiveness */
     background-color: #fff;
     padding: 20px;
      margin-bottom: 20px;
