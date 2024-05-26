@@ -117,16 +117,15 @@ body {
     text-decoration: underline;
 }
 
-.blog-post-container {
+.blog-posts-container {
     display: flex;
     justify-content: space-between; /* Ensure even spacing */
-    gap: 5px; /* Add gap between blog posts */
-    flex-wrap: wrap; /* Allow wrapping for responsiveness */
     overflow-x: auto; /* Enable horizontal scrolling if necessary */
 }
 
 .blog-post {
-    flex: 0 0 calc(33.333% - 20px); /* Adjusted width for three posts per row */
+    flex: 0 0 calc(30% - 20px); /* Adjusted width for three posts per row */
+    max-width: calc(30% - 20px); /* Added to ensure responsiveness */
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
