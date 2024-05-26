@@ -119,17 +119,16 @@ body {
 
 .blog-post-container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between; /* Ensure even spacing */
+    gap: 5px; /* Add gap between blog posts */
+    flex-wrap: wrap; /* Allow wrapping for responsiveness */
     overflow-x: auto; /* Enable horizontal scrolling if necessary */
 }
 
 .blog-post {
-    flex: 1 1 calc(33.333% - 20px); /* Adjust width for three posts per row */
-    max-width: calc(33.333% - 20px); /* Ensure responsiveness */
+    flex: 0 0 calc(33.333% - 20px); /* Adjusted width for three posts per row */
     background-color: #fff;
     padding: 20px;
-    margin-bottom: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -138,7 +137,6 @@ body {
 .blog-post img {
     max-width: 100%;
     height: auto;
-    flex-wrap: wrap; /* Allow wrapping of items */
     border-radius: 10px;
 }
 
@@ -157,6 +155,23 @@ body {
     color: #00bcd4; /* Change color on hover */
 }
 
+.blog-post:nth-child(1) img {
+    margin-bottom: 10px; /* Adjust the margin bottom as needed */
+}
+
+.blog-post:nth-child(1) h4 {
+    margin-bottom: 17px; /* Adjust the margin bottom as needed */
+    /* Add any other styles specific to the second blog post's title */
+}
+
+.blog-post:nth-child(2) img {
+    margin-bottom: 5px; /* Adjust the margin bottom as needed */
+}
+
+.blog-post:nth-child(2) h4 {
+    margin-bottom: 2px; /* Adjust the margin bottom as needed */
+    /* Add any other styles specific to the second blog post's title */
+}
 
 .see-more {
     text-align: center;
