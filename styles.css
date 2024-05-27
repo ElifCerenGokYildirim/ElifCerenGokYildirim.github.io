@@ -128,9 +128,11 @@ body {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 16px 8px 16px rgba(0.2, 0.2, 0.2, 0.2);
     text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
+
 
 .blog-post img {
     max-width: 100%;
@@ -184,4 +186,28 @@ body {
 
 .see-more a:hover {
     text-decoration: underline;
+}
+
+#our-papers-title {
+    color: #f5a6cf; /* Set the color to red */
+}
+
+#other-cl-papers-title {
+    color: #8386bd; /* Set the color to yellow */
+}
+
+#summary-ai-concepts-title {
+    color: #70aee7; /* Set the color to green, for example */
+}
+
+#our-papers-section .see-more a {
+    color: #f5a6cf;
+}
+
+#other-cl-papers-section .see-more a {
+    color: #8386bd;
+}
+
+#summary-ai-concepts-section .see-more a {
+    color: #70aee7;
 }
