@@ -173,9 +173,13 @@ body {
     /* Add any other styles specific to the second blog post's title */
 }
 
+#summary-ai-concepts-posts .blog-post:nth-child(1) img {
+    margin-top: 20px; /* Adjust the margin-top for the VAE image */
+}
+
 .see-more {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 22px;
 }
 
 .see-more a {
