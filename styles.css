@@ -65,8 +65,12 @@ body {
     font-size: 1.2rem;
     transition: color 0.3s;
 }
-.social-links a:hover {
-    color: #333; /* Change color on hover */
+
+.profile-info a {
+    color: #5b5b5b;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s;
 }
 .social-links img {
     width: 29px; /* Smaller size for social media icons */
