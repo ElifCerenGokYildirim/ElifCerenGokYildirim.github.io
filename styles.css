@@ -51,6 +51,7 @@ body {
     padding: 0;
     margin: 0;
     display: flex;
+     gap: 15px;
 }
 
 .social-links li {
@@ -64,7 +65,9 @@ body {
     font-size: 1.2rem;
     transition: color 0.3s;
 }
-
+.social-links a:hover {
+    color: #333; /* Change color on hover */
+}
 .social-links img {
     width: 29px; /* Smaller size for social media icons */
     height: 25px;
