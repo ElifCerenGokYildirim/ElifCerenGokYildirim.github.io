@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diffusion Models: Generate Data with Noise&Denoise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-top: 0;
+            color: #333;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #a9c6e3;
+            color: #5f574f;
+            border-radius: 5px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            color: #555;
+        }
+
+        p {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+
+        ol {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+
+        a {
+            color: #777;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .colored1 {
+            color: #f7931e;
+        }
+
+        .colored2 {
+            color: #2490da;
+        }
+
+        .colored3 {
+            color: #f1c232;
+        }
+
+        .colored4 {
+            color: #876c94;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Diffusion Models: Generating Data with Noise and Denoising</h1>
+
+        <article class="blog-post">
+            <p>Diffusion models are a class of probabilistic models that generate data by iteratively refining a noisy sample until it resembles the target data.</p>
+
+            <h2>The Core Concept: Diffusion and Denoising</h2>
+
+            <p>At the heart of diffusion models are two processes: <strong><span class="colored1">diffusion</span></strong> and <strong><span class="colored2">denoising</span></strong>.</p>
+            <div class="center">
+                <img src="diffusiondenoising.png" alt="Diffusion and Denoising">
+            </div>
+
+            <p><strong><span class="colored1">Diffusion</span></strong>: This is a forward process where data (e.g., an image) is gradually corrupted by adding noise over several steps. Imagine starting with a clear image and progressively adding layers of random noise until it becomes almost unrecognizable.</p>
+
+            <p><strong><span class="colored2">Denoising</span></strong>: This is the reverse process, where the model learns to gradually remove noise from the corrupted data, step by step, to recover the original data distribution. The model is trained to predict and subtract the noise at each step, refining the noisy data back to a high-quality sample.</p>
+
+            <h2>The Steps in Diffusion Models</h2>
+
+            <ol>
+                <li><strong>Forward Diffusion Process</strong>: The model takes a data sample (e.g., an image) and corrupts it by adding Gaussian noise incrementally over a series of steps. Each step is a small perturbation, leading to a fully noisy sample at the end of the process. This follows a Markov chain, where each state of the image depends solely on the state from the previous step, not on any earlier steps.
+                    <ul>
+                        <li><strong>Gaussian noise:</strong> It changes the pixel values of an image so that the image becomes corrupted.</li>
+                    </ul>
+                </li>
+                <li><strong>Reverse Denoising Process</strong>: The model is trained to reverse the diffusion process. Starting from the noisy sample, the model uses a neural network to predict the noise added at each step and subtract it, progressively denoising the sample until it resembles the original data.</li>
+                <li><strong>Loss Function</strong>: During training, the model minimizes the difference between the predicted noise and the actual noise added during the forward process. This typically involves optimizing a loss function that measures this discrepancy such as MSE loss. The MSE loss measures the discrepancy between the noise we randomly define (don't think about noise as a singular value; it is also a matrix like an image) and the input image with noise introduced. So in such a way, we train our model to recognize noise in the image.</li>
+                <li><strong>Sampling</strong>: Once trained, the model can generate new samples by starting from a random noise vector and applying the learned denoising steps in reverse order.</li>
+            </ol>
+        </article>
+    </div>
+</body>
+</html>
