@@ -2,44 +2,132 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summary of our papers</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+    .container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+ .header-section {
+            background-color: #fdefef;
+            color: #333;
+            padding: 30px;
+        }
+
+.content-section {
+    background-color: #fff;
+    padding: 20px; /* Adjusted padding around the content-section */
+    margin-bottom: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.content-section h2 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px; /* Adjusted margin-bottom */
+    font-size: 1.5em; /* Reduced font size */
+}
+
+.blog-posts-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 30px; /* Adjusted margin-top to create space below the title */
+}
+
+.column {
+    flex: 1;
+    margin-right: 20px;
+    min-width: 0;
+}
+
+.blog-post {
+    background-color: #fff;
+    padding: 20px; /* Adjusted padding around each blog-post */
+    margin-bottom: 20px; /* Adjusted margin-bottom to separate the boxes */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    height: 250px; /* Increased height for the .blog-post boxes */
+}
+
+.blog-post img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    max-height: 100%; /* Ensures the image takes full height of the .blog-post box */
+    object-fit: cover; /* Ensures the image covers the container */
+}
+
+.blog-post h3 {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.blog-post h3 a {
+    text-decoration: none;
+    color: #333;
+}
+
+.blog-post h3 a:hover {
+    color: #00bcd4;
+}
+    </style>
 </head>
 <body>
     <div class="container">
+        <header class="header-section">
+            <!-- Include your header content here if needed -->
+        </header>
         <main>
             <section id="our-papers" class="content-section">
-                <h2>All Blog Posts</h2>
+                <h2>Our papers</h2>
                 <div class="blog-posts-container">
-                    <article class="blog-post">
-                        <h3><a href="blog/memo/memo.html">A Model or 603 Exemplars</a></h3>
-                        <img src="blog/memo/memo.jpg" alt="Image for First Post">
-                        <p>Short description or excerpt of the first blog post.</p>
-                    </article>
-                    <article class="blog-post">
-                        <h3><a href="blog/blog2.html">Title of Second Post</a></h3>
-                        <img src="images/blog2.jpg" alt="Image for Second Post">
-                        <p>Short description or excerpt of the second blog post.</p>
-                    </article>
-                    <article class="blog-post">
-                        <h3><a href="blog/blog3.html">Title of Third Post</a></h3>
-                        <img src="images/blog3.jpg" alt="Image for Third Post">
-                        <p>Short description or excerpt of the third blog post.</p>
-                    </article>
-                    <!-- Add more blog posts as needed -->
+                    <div class="column">
+                        <article class="blog-post">
+                            <h3><a href="our-papers/adacl/adacl.html">AdaCL</a></h3>
+                            <img src="our-papers/adacl/teaser.png">
+                            <!-- Description or content here -->
+                        </article>
+                    </div>
+
+                    <div class="column">
+                        <article class="blog-post">
+                            <h3><a href="our-papers/cl-coreset/cl_coreset.html">CL with Coreset</a></h3>
+                            <img src="">
+                            <!-- Description or content here -->
+                        </article>
+                    </div>
+
+                    <div class="column">
+                        <article class="blog-post">
+                            <h3><a href="our-papers/adacl/adacl.html">Coming Soon😉</a></h3>
+                            <img src="">
+                            <!-- Description or content here -->
+                        </article>
+                    </div>
                 </div>
             </section>
         </main>
+        <footer>
+            <!-- Include your footer content here if needed -->s
+        </footer>
     </div>
 </body>
-</html>
 </html>

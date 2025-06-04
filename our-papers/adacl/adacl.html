@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADACL: Adaptive Continual Learning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-top: 0;
+            color: #333;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #ffd9eb;
+            color: #5f574f;
+            border-radius: 5px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            color: #555;
+        }
+
+        p {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+
+        ol {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+
+        a {
+            color: #777;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .colored1 {
+            color: #ff3380;
+        }
+
+        .colored2 {
+            color: #77ab59;
+        }
+
+        .colored3 {
+            color: #f44336;
+        }
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .author-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .author-section h3 {
+            margin-right: 5px; /* Adjust as needed */
+            font-size: 20px; /* Adjust the font size as needed */
+            color: #444;
+        }
+
+        .author-section p {
+            margin: 0;
+            font-size: 20px; /* Adjust the font size as needed */
+        }
+
+        .author-section p:not(:last-child)::after {
+            content: " ";
+            margin-right: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AdaCL: Adaptive Continual Learning</h1>
+
+        <div class="author-section">
+            <h3>Authors:</h3>
+            <p><strong>Elif Ceren Gok Yildirim</strong>,</p>
+            <p><strong>Onur Yildirim</strong>,</p>
+            <p><strong>Mert Kilickaya</strong>,</p>
+            <p><strong>Joaquin Vanschoren</strong>,</p>
+        </div>
+
+        <h2>Understanding Continual Learning and the Catastrophic Forgetting</h2>
+        <p>In the rapidly evolving field of machine learning, one challenge remains particularly persistent: the ability to continually learn new information without forgetting previously acquired knowledge. This forgetting problem is generally referred to in the field as “catastrophic forgetting”. Catastrophic forgetting occurs because, while models are learning new tasks, they lose the ability to recall information about previously learned tasks. This happens because the model's parameters are updated to fit the new data, which can overwrite the representations of the old data.</p>
+
+        <h2>Understanding Class-Incremental Learning</h2>
+        <p>Class-Incremental Learning is one challenging scenario in CL which aims to update a model's parameters and expand the classification layer to learn new categories while maintaining its accuracy on previously observed classes. Then during the test time, it assumes not to have access to task ids.</p>
+
+        <h2>Solutions for solving Catastrophic Forgetting</h2>
+        <p>Three major approaches have been explored to mitigate this issue:</p>
+        <ul>
+            <li><strong>Regularization-based Methods:</strong> These techniques prevent abrupt shifts in the neural network weights by applying penalties that stabilize important parameters.</li>
+            <li><strong>Replay-based Methods:</strong> These involve storing a subset of training data and replaying it during the learning of new tasks to maintain previous knowledge.</li>
+            <li><strong>Architecture-based Methods:</strong> These methods adapt the network structure, either by expanding it or isolating parts of it to retain past information.</li>
+        </ul>
+
+        <h2>Motivation for AdaCL</h2>
+        <p>All these CL methods bring additional hyperparameters to the learning process. For example: <strong>regularization strength</strong>, <strong>learning rate</strong>, <strong>memory size</strong>, etc. Current methods define these hyperparameters to a fixed value and assume that using the same hyperparameter setting will be sufficient for learning all different subsequent tasks. However, this approach does not reflect a realistic scenario. We can imagine 2 realistic scenarios:</p>
+
+        <h3><strong><span class="colored1">High Plasticity- Low Stability:</span></strong></h3>
+        <p>Let's say you have learned large animal categories and now you will have to learn vehicle categories. In this case, you would go for mid-to low <strong>regularization strength</strong> to learn the new categories. In addition to that, you might want to store many exemplars from the large animal category in the memory buffer because you will probably forget that since the vehicle category will change the model's parameters a lot.</p>
+
+        <img src="adaclexample.png" alt="High Plasticity - Low Stability" class="center">
+
+        <h3><strong><span class="colored2">High Stability - Low Plasticity:</span></strong></h3>
+        <p>This time you have learned small vehicle categories and now you will have to learn large vehicle categories. In this case, you would think that these two subsequent tasks are intuitively similar so you don't need to lower <strong>regularization strength</strong> because with high regularization, model weights will not change too much and current weights will probably be sufficient to learn the large vehicle category. Also, you might not want to store many exemplars from small vehicle categories because you did not change the model's weights too much and you don't want to use your budget unnecessarily.</p>
+
+        <h2>Introducing AdaCL</h2>
+        <p>AdaCL (Adaptive Continual Learning) introduces a novel approach where learning rate, regularization, and memory size are treated as dynamic, tunable variables. Instead of being fixed, these parameters adapt according to the learner’s current condition and the complexity of the task.</p>
+
+        <p><strong>But how to find optimum hyperparameter values?</strong></p>
+        <p><strong>Search Algorithm =</strong> Tree Parzen Estimators</p>
+        <p><strong>Validation set =</strong> some amount of data from the current task + some amount of data from previous tasks.</p>
+
+        <p>To achieve this, we use an AutoML tool which is <a href="https://arxiv.org/abs/1907.10902">Optuna</a> and as a search algorithm, we apply <a href="https://arxiv.org/abs/1206.2944">Bayesian Optimization Tree Parzen Estimators</a>. AdaCL searches and predicts the optimal values for these hyperparameters by evaluating the model's performance on the validation set.</p>
+
+        <img src="adacl.png" alt="AdaCL" class="center">
+
+        <h2>Experimental Setup</h2>
+        <p>Our experiments utilized two well-known datasets: <strong>CIFAR100</strong> and <strong>MiniImageNet</strong>. Each dataset contains images from 100 different categories, and we trained all models with 10 tasks, with each task containing 10 classes. Standard metrics for evaluation were used:</p>
+        <ul>
+            <li><strong>Accuracy (ACC)</strong> measures the final accuracy averaged over all tasks.</li>
+            <li><strong>Backward Transfer (BWT)</strong> measures the average accuracy change of each task after learning new tasks.</li>
+        </ul>
+
+        <p>We compared AdaCL with various baseline methods including <a href="https://arxiv.org/pdf/1612.00796">EWC</a>, <a href="https://arxiv.org/abs/1606.09282">LwF</a>, <a href="https://arxiv.org/abs/1611.07725">iCaRL</a>, and <a href="https://arxiv.org/abs/1911.07053">WA</a> <strong><span class="colored3">but the GOOD NEWS is: it is a plugged-in approach</span></strong> that means you can actually combine it with other methods that require better hyperparameter setting in CL.</p>
+
+        <h2>Results</h2>
+        <p><strong>Key Findings:</strong></p>
+        <ol>
+            <li>AdaCL boosts the performance of regularization-based methods.</li>
+            <li>AdaCL yields better resource usage by leading to less memory size with the same performance.</li>
+        </ol>
+        <img src="table.png" alt="Results Table" class="center">
+
+        <h2>Conclusion</h2>
+        <p>AdaCL treats crucial hyperparameters as adaptable, addressing the challenges of CIL more effectively than traditional fixed-parameter approaches. We aim to underscore the importance of flexible, dynamic adaptation in the CL scenario. For those interested in further details, the full paper provides an in-depth analysis of the methods, experimental setup, and results. <a href="https://arxiv.org/pdf/2303.13113">Read the full paper here</a>.</p>
+    </div>
+</body>
+</html>
