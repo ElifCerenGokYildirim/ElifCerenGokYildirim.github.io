@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -161,3 +162,168 @@
     </div>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative Adversarial Networks (GANs)</title>
+    <style>
+        /* Your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-top: 0;
+            color: #333;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #ffeb7f;
+            color: #37383f;
+            border-radius: 5px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            color: #555;
+        }
+
+        p {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+
+        a {
+            color: #777;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .colored1 {
+            color: #7ac2e0;
+        }
+
+        .colored2 {
+            color: #df699f;
+        }
+
+        .colored3 {
+            color: #f1c232;
+        }
+
+        .colored4 {
+            color: #876c94;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Generative Adversarial Networks (GANs)</h1>
+
+        <article class="blog-post">
+            <p>The core idea behind GANs is simple: use two neural networks to compete against each other in a zero-sum game, driving each other to improve until the generated data is indistinguishable from real data.</p>
+            <p>There are 2 key players in this game: The <strong><span class="colored2">Generator</span>:</strong> and the <strong><span class="colored1">Discriminator</span>:</strong>.</p>
+            <h2><strong><span class="colored2">The Generator</span>:</strong></h2>
+            <p>The Generator’s job is to create fake data that resembles the real data.It starts with a random noise vector z and transforms it through a series of layers into a data sample G(z). Initially, the samples generated are poor imitations, but as training progresses, the Generator gets better at creating more realistic data.</p>
+            <div>
+            <img src="gan1.png" alt="Generator">
+            </div>
+            <p>The Discriminator acts as a detective, distinguishing between real and fake data samples.It receives both real data samples x and fake data samples from the Generator G(z) and tries to distinguish between the two. The Discriminator outputs a probability D(x) that the input data is real. During training, the Discriminator gets better at identifying fake data, which in turn pushes the Generator to produce more convincing fakes.</p>
+            <div class="center">
+                <img src="gan2.png" alt="Discriminator">
+                <img src="gan3.png" alt="Training Process">
+            </div>
+            <!-- The Training Process -->
+            <h2>The Training Process</h2>
+            <ol>
+                <li><strong>Initialize:</strong> Both the Generator and Discriminator are initialized with random weights.</li>
+                <li><strong>Generate fake data:</strong>The Generator creates a batch of fake data samples from random noise.</li>
+                <li><strong>Train the Discriminator:</strong>The Discriminator is trained on a batch of real data samples and the fake data samples from the Generator. It learns to assign higher probabilities to real samples and lower probabilities to fake ones.</li>
+                <div class="center">
+                <img src="formula1.png" alt="Discriminator">
+                </div>
+                <li><strong>Train the Generator:</strong>The Generator is trained to fool the Discriminator. This is done by updating the Generator’s weights to maximize the probability that the Discriminator assigns a high probability to the fake samples.</li>
+                <div class="center">
+                <img src="formula2.png" alt="Discriminator">
+                </div>
+                <li><strong>Iterate:</strong>Steps 2-4 are repeated iteratively. Over time, the Generator becomes better at creating realistic data, and the Discriminator becomes better at distinguishing real from fake.</li>
+            </ol>
+
+            <!-- Various proposed GAN styles -->
+            <h2>Various Proposed GAN Styles</h2>
+            <p>GANs come in various styles, each with its own characteristics and applications:</p>
+            <h3><strong><span class="colored3">DCGAN (Deep Convolutional GANs)</span></strong></h3>
+            <p>It is a type of Generative Adversarial Network (GAN) that uses deep convolutional neural networks in its architecture.</p>
+             <p><strong>Key Features of DCGAN</strong></p>
+            <ul>
+                <li><strong>Convolutional Layers:</strong> DCGANs use convolutional layers without any fully connected or pooling layers, which helps in capturing spatial hierarchies in images.</li>
+                <li><strong>Batch Normalization:</strong> This technique is used in both the generator and discriminator networks to stabilize training by normalizing the inputs of each layer.</li>
+                <li><strong>Strided Convolutions and Fractional-Strided Convolutions:</strong> These replace pooling layers to down-sample and up-sample the data, respectively.</li>
+            </ul>
+            <h3><strong><span class="colored3">WGAN (Wasserstein Generative Adversarial Network)</span></strong></h3>
+            <p>It is an improved version of the traditional GAN that addresses some of the stability and training issues associated with GANs.</p>
+            <p>GANs are powerful but often difficult to train due to issues such as mode collapse, vanishing gradients, and instability. WGANs were introduced to provide more stable and meaningful training by using a different loss function based on the Wasserstein distance (also known as the Earth Mover's distance) instead of the Jensen-Shannon divergence used in traditional GANs.</p>
+            <h4><strong>Key Concepts in WGAN</strong></h4>
+            <ol>
+                <li><strong>Wasserstein Distance:</strong> The Wasserstein distance measures the distance between two probability distributions. It is more stable and provides meaningful gradients even when the generated data is far from the real data distribution.</li>
+                <li><strong>Critic Network:</strong> Instead of a discriminator, WGAN uses a critic network. The critic scores the real and generated data instead of classifying them as real or fake. The critic's output is used to approximate the Wasserstein distance between the real and generated data distributions.</li>
+            </ol>
+            <h3><strong><span class="colored3">Conditional GAN</span></strong></h3>
+            <p>It is an extension of the standard GAN model that includes conditional information in the generation process. This additional information could be any kind of auxiliary information such as class labels, text descriptions, or other data that can influence the generation process.</p>
+            <h4><strong>Key Concepts in Conditional GAN</strong></h4>
+            <p>The key difference between a standard GAN and a cGAN is that both the generator and discriminator receive extra information about the data as a condition.</p>
+            <p><strong>Generator:</strong></p>
+            <p>The generator in a cGAN takes a noise vector z and a condition c as inputs. The condition c could be a class label or some other form of additional information.</p>
+            <p>The generator outputs a data sample G(z,c) that aims to be indistinguishable from real data conditioned on c.</p>
+            <p><strong><span class="colored4">Example</span></strong>: Let's say you want to generate images of digits conditioned on their labels (0-9). Here's how cGAN would be set up:</p>
+            <ol>
+                <li><strong>Condition Vector:</strong> If the condition is the digit label, you can represent it as a one-hot encoded vector. For instance, if the digit is '3', the condition vector could be [0,0,0,1,0,0,0,0,0,0].</li>
+                <li><strong>Generator Input:</strong> The noise vector z and the condition vector c are concatenated and fed into the generator to produce an image of the specified digit.</li>
+                <li><strong>Discriminator Input:</strong> The generated or real image and the condition vector are both fed into the discriminator to determine if the image is real and if it matches the condition.</li>
+            </ol>
+        </article>
+    </div>
+</body>
+</html>
+>>>>>>> origin/main

@@ -23,63 +23,65 @@ body {
     padding: 30px;
 }
 
-    .profile-container {
-        flex-direction: column; /* Stack items vertically */
-        align-items: center; /* Center align items */
-        padding: 10px; /* Add padding for better spacing */
-    }
+.profile-container {
+    display: flex;
+    align-items: center;
+}
 
-    .profile-container img {
-        border-radius: 50%;
-        max-width: 140px; /* Adjust the maximum width of the image */
-        height: auto;
-        margin-right: 20px; /* Adjust margin as needed */
-    }
+.profile-container img {
+    border-radius: 50%;
+    max-width: 140px; /* Adjust the maximum width of the image */
+    height: auto;
+    margin-right: 20px; /* Adjust margin as needed */
+}
 
-    .profile-info h1 {
-        margin: 0;
-        font-size: 2em;
-    }
+.profile-info h1 {
+    margin: 0;
+    font-size: 2em;
+}
 
-    .profile-info .description {
-        font-size: 1.2em;
-        color: #333; /* Lighten the description text color */
-        margin-top: 10px;
-    }
+.profile-info .description {
+    font-size: 1.2em;
+    color: #333; /* Lighten the description text color */
+    margin-top: 10px;
+}
 
 .social-links {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    justify-content: center;/* Add gap between the social media links */
 }
 
 .social-links li {
-    display: inline; /* Ensure list items are inline */
+    display: inline;
+    margin-right: 1px; /* Adjust the margin between social media icons */
 }
 
 .social-links a {
-    color: #00bcd4;
+    color: #fff;
     text-decoration: none;
     font-size: 1.2rem;
     transition: color 0.3s;
 }
 
-.social-links a:hover {
-    color: #333; /* Change color on hover */
+.social-links img {
+    width: 29px; /* Smaller size for social media icons */
+    height: 25px;
 }
 
 .profile-info a {
-    color: #5b5b5b;
+    color: #999999;
     text-decoration: none;
     font-size: 1.2rem;
     transition: color 0.3s;
 }
 
 .profile-info a:hover {
+    color: #00bcd4;
+}
+
+.social-links a:hover {
     color: #00bcd4;
 }
 
@@ -131,6 +133,7 @@ body {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
+
 .blog-post img {
     max-width: 100%;
     height: auto;
@@ -170,13 +173,9 @@ body {
     /* Add any other styles specific to the second blog post's title */
 }
 
-#summary-ai-concepts-posts .blog-post:nth-child(1) img {
-    margin-top: 20px; /* Adjust the margin-top for the VAE image */
-}
-
 .see-more {
     text-align: center;
-    margin-top: 22px;
+    margin-top: 20px;
 }
 
 .see-more a {
