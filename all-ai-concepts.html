@@ -23,9 +23,7 @@
         }
 
         .header-section {
-            background-color: #fdefef;
-            color: #333;
-            padding: 30px;
+            display: none;
         }
 
         .content-section {
@@ -34,6 +32,7 @@
             margin-bottom: 40px;
             border-radius: 8px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         .content-section h2 {
@@ -47,13 +46,11 @@
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            margin-top: 40px;
+            margin-top: 10px;
         }
 
         .column {
-            flex: 1;
-            margin-right: 20px;
-            min-width: 0;
+            flex: 0 0 calc(33.333% - 20px);
         }
 
         .blog-post {
@@ -63,7 +60,7 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            height: 180px; /* Fixed height for the .blog-post boxes */
+            height: 215px; /* Fixed height for the .blog-post boxes */
         }
 
         .blog-post img {
@@ -97,7 +94,7 @@
         </header>
         <main>
             <section id="our-papers" class="content-section">
-                <h2>Amazing AI approaches</h2>
+                <h2>Summary of AI concepts</h2>
                 <div class="blog-posts-container">
                     <div class="column">
                         <article class="blog-post">
@@ -122,6 +119,29 @@
                             <!-- Description or content here -->
                         </article>
                     </div>
+                    <!-- SECOND ROW -->
+                    <div class="column">
+                        <article class="blog-post">
+                            <h3><a href="ai-concepts/vae/vae.html">Other</a></h3>
+                            <img src="ai-concepts/vae/.png" alt="Image">
+                            <!-- Description or content here -->
+                        </article>
+                    </div>
+                     <div class="column">
+                        <article class="blog-post">
+                            <h3><a href="ai-concepts/vae/vae.html">Other</a></h3>
+                            <img src="ai-concepts/vae/.png" alt="Image">
+                            <!-- Description or content here -->
+                        </article>
+                    </div>
+                     <div class="column">
+                        <article class="blog-post">
+                            <h3><a href="ai-concepts/vae/vae.html">Other</a></h3>
+                            <img src="ai-concepts/vae/.png" alt="Image">
+                            <!-- Description or content here -->
+                        </article>
+                    </div>
+
                 </div>
             </section>
         </main>
