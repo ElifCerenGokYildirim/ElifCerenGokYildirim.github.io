@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Efficient Continual Learning with Transformers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-top: 0;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #e1ad6d;
+            color: #635c50;
+            border-radius: 5px;
+        }
+
+        h1 a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        h1 a:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            color: #555;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #777;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+
+        p {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .author-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .author-section h3 {
+            margin-right: 5px;
+            font-size: 18px;
+        }
+
+        .author-section p {
+            margin: 0;
+            font-size: 12px;
+        }
+
+        .author-section p:not(:last-child)::after {
+            content: " ";
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1><a href="https://proceedings.neurips.cc/paper_files/paper/2022/file/4522de4178bddb36b49aa26efad537cf-Paper-Conference.pdf">MEMORY EFFICIENT CONTINUAL LEARNING WITH TRANSFORMERS</a></h1>
+
+        <div class="author-section">
+            <h3>Authors:</h3>
+            <p><strong>Beyza Ermiş</strong>,</p>
+            <p><strong>Giovanni Zappella</strong>,</p>
+            <p><strong>Martin Wistuba</strong>,</p>
+            <p><strong>Aditya Rawal</strong>,</p>
+            <p><strong>Cédric Archambeau</strong></p>
+        </div>
+
+        <article class="blog-post">
+            <h2>Problem Statement:</h2>
+            <ul>
+                <li>Existing continual learning methods either rely on memory buffers or add many parameters for each new task, which leads to high memory consumption.</li>
+                <li>Most of them do not take advantage of pretrained models, missing out on transferability.</li>
+            </ul>
+
+            <h2>Research Goals:</h2>
+            <ul>
+                <li>Use pretrained models while mitigating catastrophic forgetting.</li>
+                <li>Control memory usage by adding fixed, reusable modules instead of increasing parameter count linearly with number of tasks.</li>
+            </ul>
+
+            <h2>Proposed Approach:</h2>
+            <p>The method is called <strong>Adaptive Distillation of Adapters (ADA)</strong>. The idea is to insert small Adapter modules between layers of a pretrained model.</p>
+            <ul>
+                <li>Adapters are small feed-forward bottleneck layers that reduce and expand back the feature size.</li>
+                <li>Each task introduces its own Adapter module Φ<sub>i</sub>, while sharing the base model Θ across tasks.</li>
+                <li>To avoid linearly increasing memory with tasks, they limit the number of adapters and reuse them when needed.</li>
+                <li>A memory buffer (constructed with reservoir sampling) is maintained to stabilize performance when reusing adapters.</li>
+            </ul>
+
+            <p>When reusing adapters, the question becomes: <em>which adapter should be reused?</em></p>
+            <ul>
+                <li>They try three options:
+                    <ul>
+                        <li><strong>Random:</strong> Performs poorly.</li>
+                        <li><strong>TransRate:</strong> A transfer learning score.</li>
+                        <li><strong>LEEP:</strong> Log Expected Empirical Prediction, also used in transfer learning.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2>Experimental Setup:</h2>
+            <ul>
+                <li><strong>Datasets:</strong> CIFAR100, MiniImageNet (image); 3 datasets for text classification.</li>
+                <li><strong>Models:</strong> ViT-B, DeiT-B (vision); BERTbase, DistilBERT, RoBERTa (text).</li>
+                <li><strong>Adapter size:</strong> 48 (∼1.8M parameters per adapter).</li>
+            </ul>
+
+            <h2>Results:</h2>
+            <img src="/blog/memory_efficient_cl_with_transformers/result.png" alt="Results">
+
+            <h2>Limitations:</h2>
+            <ul>
+                <li>Although parameter-efficient, the approach still relies on a memory buffer for previous tasks.</li>
+            </ul>
+
+            <h2>Strengths:</h2>
+            <ul>
+                <li>Considering the publication date, using ViTs and adapter-based distillation for continual learning is quite novel.</li>
+                <li>The method is effective on both image and text tasks, demonstrating generalizability.</li>
+            </ul>
+
+            <h2>Future Work:</h2>
+            <ul>
+                <li>Apply the ADA idea to ResNet-based models.</li>
+                <li>Extend the approach to multimodal tasks combining vision and language.</li>
+            </ul>
+        </article>
+    </div>
+</body>
+</html>
