@@ -1,1 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TriRE: A Multi-Mechanism Learning Paradigm for Continual Knowledge Retention and Promotion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        h1 {
+            font-size: 30px;
+            margin-top: 0;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #8a496b;
+            color: #fce0df;
+            border-radius: 5px;
+        }
+        h1 a {
+            color: inherit;
+            text-decoration: none;
+        }
+        h1 a:hover {
+            text-decoration: underline;
+        }
+        h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            color: #555;
+        }
+        h3 {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #777;
+        }
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+        p {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .author-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .author-section h3 {
+            margin-right: 5px;
+            font-size: 18px;
+        }
+        .author-section p {
+            margin: 0;
+            font-size: 12px;
+        }
+        .author-section p:not(:last-child)::after {
+            content: " ";
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1><a href="#">TRIRE: A MULTI-MECHANISM LEARNING PARADIGM FOR CONTINUAL KNOWLEDGE RETENTION AND PROMOTION</a></h1>
+
+        <div class="author-section">
+            <h3>Authors:</h3>
+            <p><strong>Preetha Vijayan</strong>,</p>
+            <p><strong>Prashant Bhat</strong>,</p>
+            <p><strong>Bahram Zonooz</strong>,</p>
+            <p><strong>Elahe Arani</strong></p>
+        </div>
+
+        <article class="blog-post">
+            <h2>Problem Statement:</h2>
+            <ul>
+                <li>Existing continual learning methods—parameter isolation, weight regularization, rehearsal—are orthogonal and each has limitations: capacity saturation, class-discrimination failure, buffer overfitting.</li>
+                <li>No unified framework leverages their complementary strengths.</li>
+            </ul>
+
+            <h2>Research Goals:</h2>
+            <ul>
+                <li>Design a unified CL paradigm combining multiple biological and algorithmic mechanisms to mitigate forgetting and promote forward transfer.</li>
+                <li><strong>Desired Outcomes:</strong>
+                    <ul>
+                        <li>Preserve performance on past tasks (stability)</li>
+                        <li>Maintain plasticity for new tasks</li>
+                        <li>Reuse freed capacity to accommodate many tasks without growing the model</li>
+                        <li>Outperform individual CL approaches on standard benchmarks</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2>Proposed Approach: TriRE (RE<em>tain</em>, RE<em>vise</em> &amp; RE<em>wind</em>)</h2>
+            <h3>Retain</h3>
+            <ul>
+                <li>For each new task, Retain updates connections not used previously with new task data, while connections shared with previous tasks are updated using replay data under EMA (Exponential Moving Average) regularization.
+                    A subnetwork for a given task is identified and saved using CWI (Continual Weight Importance). </li>
+
+            </ul>
+            <h3>Revise</h3>
+            <ul>
+                <li>Revise focuses on precise weight updates: it applies small updates using replay data to weights that are common to both current and previous tasks, while weights used only in the current task receive updates from the current task's data.</li>
+            </ul>
+            <h3>Rewind</h3>
+            <ul>
+                <li>Reset non-cumulative weights to a saved checkpoint from Retain (70–90% through training).</li>
+                <li>Retrain on current data to reactivate underused neurons (active forgetting + neurogenesis).</li>
+            </ul>
+            <img src="/blog/trire/teaser.jpg" alt="TriRE Approach Diagram">
+
+            <h2>Experimental Setup:</h2>
+            <ul>
+                <li><strong>Datasets:</strong> Seq‑CIFAR10 (5×2‑class), Seq‑CIFAR100 (5×20‑class), Seq‑TinyImageNet (10×20‑class).</li>
+                <li><strong>Backbone:</strong> ResNet‑18, batch size 32, 50 epochs per task, Adam optimizer.</li>
+            </ul>
+
+            <h2>Results:</h2>
+            <img src="/blog/trire/result_table.jpg" alt="TriRE Results">
+
+            <h2>Limitations:</h2>
+            <ul>
+                <li>Increased <strong>memory overhead</strong> (EMA model, masks, checkpointed weights).</li>
+                <li>Complex <strong>hyperparameter tuning</strong>.</li>
+                <li>Unclear test-time protocol—are multiple masks used?</li>
+            </ul>
+
+            <h2>Strengths:</h2>
+            <ul>
+                <li>First paper to harmonize parameter isolation, weight regularization, and rehearsal in a biologically inspired loop.</li>
+                <li>Clear, accessible writing and presentation.But I would suggest to check the pseudocode carefully, there you will see much clear details. </li>
+            </ul>
+
+            <h2>Future Work:</h2>
+            <ul>
+                <li>Leverage intrinsic data/task structure for more efficient subnet selection.</li>
+            </ul>
+        </article>
+    </div>
+
+</body>
+</html>
 
