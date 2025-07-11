@@ -1,1 +1,168 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RanPAC: Random Projections and Pre-trained Models for Continual Learning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        h1 {
+            font-size: 30px;
+            margin-top: 0;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #ffbd7e;
+            color: #593a32;
+            border-radius: 5px;
+        }
+        h1 a {
+            color: inherit;
+            text-decoration: none;
+        }
+        h1 a:hover {
+            text-decoration: underline;
+        }
+        h2 {
+            font-size: 24px;
+            margin-top: 30px;
+            color: #555;
+        }
+        h3 {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #777;
+        }
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+        p {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .author-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .author-section h3 {
+            margin-right: 5px;
+            font-size: 18px;
+        }
+        .author-section p {
+            margin: 0;
+            font-size: 12px;
+        }
+        .author-section p:not(:last-child)::after {
+            content: " ";
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1><a href="#">RANPAC: RANDOM PROJECTIONS AND PRE‑TRAINED MODELS FOR CONTINUAL LEARNING</a></h1>
+
+        <div class="author-section">
+            <h3>Authors:</h3>
+            <p><strong>Mark D. McDonnell</strong>,</p>
+            <p><strong>Dong Gong</strong>,</p>
+            <p><strong>Amin Parveneh</strong>,</p>
+            <p><strong>Ehsan Abbasnejad</strong>,</p>
+            <p><strong>Anton van den Hengel</strong></p>
+        </div>
+
+        <article class="blog-post">
+            <h2>Problem Statement:</h2>
+            <ul>
+                <li>Methods using pre‑extracted features struggle to bridge distribution gaps; adaptor‑based approaches risk forgetting; training-from-scratch CL methods underperform non‑CL baselines and suffer catastrophic forgetting.</li>
+            </ul>
+
+            <h2>Research Goals:</h2>
+            <ul>
+                <li>Bypass catastrophic forgetting via training‑free random projectors and class‑prototype accumulation.</li>
+                <li>Demonstrate that decorrelating class prototypes reduces distribution disparity in pre‑trained representations.</li>
+            </ul>
+
+            <h2>Proposed Approach:</h2>
+            <h3>Random‑Projection (RP) Layer</h3>
+            <ul>
+                <li>Inject a frozen, nonlinear random projection layer between the backbone’s feature output and the class‑prototype head.</li>
+                <li>Expands feature dimensionality to enhance linear separability; projections are generated once and remain fixed throughout CL.</li>
+            </ul>
+            <h3>Class‑Prototype (CP) Accumulation & Classification</h3>
+            <ul>
+                <li>Form class prototypes by averaging feature vectors per class.</li>
+                <li>Use incrementally updated second‑order statistics (Gram matrix) to go beyond simple nearest‑mean classification.</li>
+            </ul>
+            <img src="/blog/ranpac/ranpac_teaser.jpg" alt="RANPAC">
+
+            <h2>Training Setup:</h2>
+            <ul>
+                <li><strong>Phase 1 (optional):</strong> PETL methods (AdaptFormer, SSF, VPT) trained on the first stage; head and weights discarded before CL.</li>
+                <li><strong>Phase 2:</strong> Extract features from frozen pretrained model; update Gram matrix and class prototypes without SGD.</li>
+            </ul>
+
+            <h2>Experimental Setup:</h2>
+            <ul>
+                <li><strong>Datasets:</strong> CIFAR‑100, ImageNet‑R, ImageNet‑A, OmniBenchmark, CUB, VTAB, Stanford Cars.</li>
+                <li><strong>Hyperparameters:</strong> Random projection dims M = 2 000 (also evaluated M = 5 000, 10 000).</li>
+            </ul>
+
+            <h2>Results:</h2>
+            <img src="/blog/ranpac/ranpac_result.jpg" alt="RanPAC Results">
+
+            <h2>Limitations:</h2>
+            <ul>
+                <li>Relies entirely on a strong pretrained feature extractor; likely weaker when training from scratch.</li>
+            </ul>
+
+            <h2>Strengths:</h2>
+            <ul>
+                <li>Concise, training‑free approach that effectively prevents forgetting.</li>
+                <li>Rehearsal‑free continual learning.</li>
+            </ul>
+
+            <h2>Future Work:</h2>
+            <ul>
+                <li>Explore combining RanPAC with prompting or adapter‑based PETL methods.</li>
+            </ul>
+        </article>
+    </div>
+
+</body>
+</html>
